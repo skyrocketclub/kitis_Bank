@@ -4,7 +4,7 @@ const prompt = require('prompt-sync')({ sigint: true });
 // const prompt = ps();
 
 // const replaceTemplate = require("./starter/modules/replaceTemplates");
-// const dollarToNaira = require('./Bank Project/modules/dollarToNaira');
+const dollarToNaira = require('./modules/dollarToNaira');
 
 const verifyNumber = arg => {
   return isNaN(arg) === true ? false : true;
@@ -25,7 +25,9 @@ class Account {
     this.#dollarBalance = 0;
 
     console.log(`Welcome ${this.firstName}, to Kitis Bank`);
-    console.log('Kindly Insert your four sigit security pin');
+    console.log(
+      '////////////////////////////Security pin////////////////////////////'
+    );
     this.setSecurityPin();
   }
 
@@ -46,8 +48,10 @@ class Account {
 
   setSecurityPin() {
     let pinOne = Number(prompt('Kindly enter a four digit pin: '));
+
     if (verifyNumber(pinOne) === true) {
       let pinTwo = Number(prompt('Kindly enter the pin a second time: '));
+
       if (pinOne === pinTwo) {
         console.log('PIN SUCCESSFULLY CREATED!');
         this.#setPin(pinOne);
