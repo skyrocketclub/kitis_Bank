@@ -1,15 +1,14 @@
 {
-  "name": "bank-project",
+  "name": "modules",
   "version": "1.0.0",
   "description": "",
-  "main": "myBank.js",
+  "main": "dollarToNaira.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "ugo",
+  "author": "kitis",
   "license": "ISC",
   "dependencies": {
-    "node-fetch": "^3.2.10",
-    "prompt-sync": "^4.2.0"
+    "node-fetch": "^2.6.6"
   }
 }

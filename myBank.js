@@ -1,6 +1,7 @@
 'use strict';
 
 const prompt = require('prompt-sync')({ sigint: true });
+// const fetch = require('node-fetch');
 // const prompt = ps();
 
 // const replaceTemplate = require("./starter/modules/replaceTemplates");
@@ -36,10 +37,13 @@ class Account {
   }
 
   //This function basically returns the amount in dollar that is to be paid
-  getDollarRate(dollar) {
-    const rate = dollarToNaira();
+  async getDollarRate(dollar) {
+    const rate = await dollarToNaira();
     let naira = dollar * rate;
-    return naira;
+    console.log(
+      `The equivalent of ${dollar} is ${naira}, will you like to proceed?`
+    );
+    // return naira;
   }
 
   #setPin(pin) {
@@ -67,3 +71,4 @@ class Account {
 }
 
 const ugo = new Account('Ugochukwu', 'Nwankiti');
+ugo.getDollarRate(500);
