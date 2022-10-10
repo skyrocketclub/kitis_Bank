@@ -20,9 +20,12 @@ const accountSchema = new mongoose.Schema({
   email: {
     type: String,
     required: [true, "email field cannot be empty"],
-  },  
+  },
   yearOfBirth: {
     type: Number,
     required: [true, "Year of birth field cannot be empty"],
   },
 });
+
+const Account = mongoose.model("Account", accountSchema);
+module.exports = Account;

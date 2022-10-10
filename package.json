@@ -10,7 +10,9 @@
   "author": "ugo",
   "license": "ISC",
   "dependencies": {
-    "mongoose": "^6.6.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^5.13.15",
     "node-fetch": "^2.6.1",
     "prompt-sync": "^4.2.0"
   }
