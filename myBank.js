@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 
-const prompt = require('prompt-sync')({ sigint: true });
+const prompt = require("prompt-sync")({ sigint: true });
 // const fetch = require('node-fetch');
 // const prompt = ps();
 
 // const replaceTemplate = require("./starter/modules/replaceTemplates");
-const dollarToNaira = require('./modules/dollarToNaira');
+const dollarToNaira = require("./modules/dollarToNaira");
 
-const verifyNumber = arg => {
+const verifyNumber = (arg) => {
   return isNaN(arg) === true ? false : true;
 };
 
@@ -27,7 +27,7 @@ class Account {
 
     console.log(`Welcome ${this.firstName}, to Kitis Bank`);
     console.log(
-      '////////////////////////////Security pin////////////////////////////'
+      "////////////////////////////Security pin////////////////////////////"
     );
     this.setSecurityPin();
   }
@@ -51,24 +51,24 @@ class Account {
   }
 
   setSecurityPin() {
-    let pinOne = Number(prompt('Kindly enter a four digit pin: '));
+    let pinOne = Number(prompt("Kindly enter a four digit pin: "));
 
     if (verifyNumber(pinOne) === true) {
-      let pinTwo = Number(prompt('Kindly enter the pin a second time: '));
+      let pinTwo = Number(prompt("Kindly enter the pin a second time: "));
 
       if (pinOne === pinTwo) {
-        console.log('PIN SUCCESSFULLY CREATED!');
+        console.log("PIN SUCCESSFULLY CREATED!");
         this.#setPin(pinOne);
       } else {
-        console.log('The PINS do not match, please try again!');
+        console.log("The PINS do not match, please try again!");
         this.setSecurityPin();
       }
     } else {
-      console.log('Invalid Pin, Please try again');
+      console.log("Invalid Pin, Please try again");
       this.setSecurityPin();
     }
   }
 }
 
-const ugo = new Account('Ugochukwu', 'Nwankiti');
+const ugo = new Account("Ugochukwu", "Nwankiti");
 ugo.getDollarRate(500);
