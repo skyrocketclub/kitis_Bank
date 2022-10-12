@@ -1,0 +1,23 @@
+class APIFeatures {
+  constructor(query, queryString) {
+    this.query = query;
+    this.queryString = queryString;
+  }
+
+  limitFields() {
+    console.log(this.queryString);
+    // console.log(query);
+    if (this.queryString.fields) {
+      const fields = this.queryString.fields.split(",").join(" ");
+      console.log("Give me only the following fields-----------");
+      console.log(fields);
+      //these fields alone.....
+      this.query = this.query.select(fields);
+    } else {
+      this.query = this.query.select("-__v");
+    }
+    return this;
+  }
+}
+
+module.exports = APIFeatures;

@@ -25,6 +25,14 @@ const accountSchema = new mongoose.Schema({
     type: Number,
     required: [true, "Year of birth field cannot be empty"],
   },
+  accountBalance: {
+    type: Number,
+    default: 0,
+  },
+  transactionHistory: {
+    type: [{ amount: Number, date: Date }],
+    default: [],
+  },
 });
 
 const Account = mongoose.model("Account", accountSchema);
