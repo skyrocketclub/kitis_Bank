@@ -9,11 +9,13 @@ exports.aliasAccountBalance = (req, res, next) => {
   next();
 };
 
-exports.getAccount = async (req, res) => {
+exports.getAccountBalance = async (req, res) => {
   console.log(req.query);
   try {
-    // const account = await Account.findById(req.params.id);
-    const features = new APIFeatures(Account.find(), req.query).limitFields();
+    const features = new APIFeatures(
+      Account.findById(req.params._id),
+      req.query
+    ).limitFields();
     const account = await features.query;
     console.log(account);
     const [details] = account;
@@ -21,7 +23,7 @@ exports.getAccount = async (req, res) => {
 
     res.status(200).json({
       status: "success",
-      accountBalance: accountBalance,
+      data: accountBalance,
     });
   } catch (err) {
     res.status(404).json({
