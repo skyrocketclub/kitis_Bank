@@ -95,3 +95,55 @@ exports.deleteAccount = async (req, res) => {
     });
   }
 };
+
+//practising Aggregation Pipeline...
+/*
+  Aim of the stats:
+  1.  availableCash {Do not include the money of Current Account}
+  2.  Number of Active accounts
+  3.  Most Afflent Customer
+
+  //EXTRA TASK FOR THE FUTURE
+  4. Array that shows the net available cash in the bank per month...
+
+  STEPS IN WHICH THE STAGES SHOULD OCCUR:
+  MAtch: get accounts that the types $ne:"current"
+  $group:
+    Available Cash
+    Number of active savings accounts: $sum:1
+  $sort: sort in order of the account balance and get the most affluent customers...
+
+*/
+exports.getBankStats = async (req, res) => {
+  // console.log(req.query);
+  try {
+    const stats = await Account.aggregate([
+      {
+        $match: { accountType: { $ne: "current" } },
+      },
+      {
+        $sort: { accountalance: 1 }, //sorting according to those with the highest account
+      },
+      {
+        $group: {
+          _id: null,
+          availableCashAggregate: { $sum: "$accountBalance" },
+          activeSavingsAccounts: { $sum: 1 },
+          affluentCustomers: { $push: "$name" },
+        },
+      },
+    ]);
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        stats,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: "failed",
+      message: err,
+    });
+  }
+};

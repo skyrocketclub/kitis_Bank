@@ -5,6 +5,8 @@ const router = express.Router();
 
 router.route("/").post(bankOps.createAccount); //create an account
 router.route("/").get(bankOps.getAllAccounts); //get all the accounts
+router.route("/bank-stats").get(bankOps.getBankStats);
+
 router
   .route("/:id")
   .get(bankOps.getAccount)

@@ -14,6 +14,7 @@
     "express": "^4.18.2",
     "mongoose": "^5.13.15",
     "node-fetch": "^2.6.1",
-    "prompt-sync": "^4.2.0"
+    "prompt-sync": "^4.2.0",
+    "validator": "^13.7.0"
   }
 }
